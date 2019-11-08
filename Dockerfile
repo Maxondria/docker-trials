@@ -6,6 +6,6 @@ ADD package.json /app/package.json
 
 RUN yarn
 
-COPY . /app
+# COPY . /app
 
 CMD ["yarn", "start"]
