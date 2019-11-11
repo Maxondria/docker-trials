@@ -12,10 +12,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "docker-stop": "docker stop cra && docker rm cra",
-    "docker-rm-images": "docker rmi $(docker images -a -q)",
-    "predocker": "docker build -t cra .",
-    "docker": "docker run -d --name cra -v $(pwd):/app -p 3001:3000 cra"
+    "docker-stop": "docker stop app-running && docker rm app-running",
+    "docker-rm-images": "docker container prune && docker rmi $(docker images -a -q)",
+    "predocker": "docker build -t cra-app-dev . && docker build -t maxondria/cra-app:latest -f prod.Dockerfile .",
+    "docker": "docker run -d --name app-running -v $(pwd):/app -p 3001:3000 cra-app-dev",
+    "postdocker": "docker push maxondria/cra-app:latest"
   },
   "eslintConfig": {
     "extends": "react-app"
