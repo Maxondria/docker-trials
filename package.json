@@ -12,7 +12,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepredocker": "docker stop $(docker ps -q --filter ancestor=$npm_package_name:$npm_package_version )",
+    "clean": "docker stop $(docker ps -q --filter ancestor=$npm_package_name:$npm_package_version )",
     "predocker": "DOCKER_BUILDKIT=1 docker build -t $npm_package_name:$npm_package_version .",
     "docker": "docker run -d -p 3000:3000 -v ${PWD}:/app -v /app/node_modules $npm_package_name:$npm_package_version $npm_package_name",
     "postdocker": "docker push $npm_package_name:$npm_package_version"
