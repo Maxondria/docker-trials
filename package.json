@@ -15,7 +15,9 @@
     "clean": "docker stop $(docker ps -q --filter ancestor=$npm_package_name:$npm_package_version )",
     "predocker": "DOCKER_BUILDKIT=1 docker build -t $npm_package_name:$npm_package_version .",
     "docker": "docker run -d -p 3000:3000 -v ${PWD}:/app -v /app/node_modules --name $npm_package_name $npm_package_name:$npm_package_version",
-    "postdocker": "docker push $npm_package_name:$npm_package_version"
+    "postdocker": "docker push $npm_package_name:$npm_package_version",
+    "predeploy": "yarn build",
+    "deploy": "npm install gh-pages && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
